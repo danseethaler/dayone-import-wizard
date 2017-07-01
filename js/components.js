@@ -12,7 +12,14 @@ const colors = {
     accent: '#8E83A3'
 };
 
-export { Button, Table };
+export { TitleBar, Button, Table };
+
+const TitleBar = glamorous.div({
+    WebkitAppRegion: 'drag',
+    width: '100%',
+    height: 22,
+    borderBottom: '1px solid #dcdcdc'
+});
 
 const Button = glamorous.button(
     {

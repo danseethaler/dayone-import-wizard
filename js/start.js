@@ -4,17 +4,11 @@ console.clear();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Table } from './components';
+import { TitleBar, Button, Table } from './components';
 
 ReactDOM.render(
     <div>
-        <div
-            style={{
-                width: '100%',
-                marginTop: 22,
-                borderBottom: '1px solid #dcdcdc'
-            }}
-        />
+        <TitleBar />
         <div>
             <Button
                 type="success"
@@ -22,7 +16,7 @@ ReactDOM.render(
                     console.log('success');
                 }}
             >
-                Welcome
+                Get Started
             </Button>
         </div>
     </div>,
