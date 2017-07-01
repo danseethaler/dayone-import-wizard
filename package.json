@@ -1,7 +1,7 @@
 {
-    "name": "electron-template",
+    "name": "dayone-import-wizard",
     "version": "1.0.0",
-    "description": "Electron template app with a few styled components.",
+    "description": "Easily import docx, pdf, text and other files into DayOne 2.",
     "main": "main.js",
     "scripts": {
         "test": "jest",
@@ -10,14 +10,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/danseethaler/electron-template.git"
+        "url": "git+https://github.com/danseethaler/dayone-import-wizard.git"
     },
     "author": "Dan Seethaler",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/danseethaler/electron-template/issues"
+        "url": "https://github.com/danseethaler/dayone-import-wizard/issues"
     },
-    "homepage": "https://github.com/danseethaler/electron-template#readme",
+    "homepage": "https://github.com/danseethaler/dayone-import-wizard#readme",
     "dependencies": {
         "electron": "^1.6.11",
         "glamor": "^2.20.25",
