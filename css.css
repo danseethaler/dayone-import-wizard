@@ -1,0 +1,6 @@
+body {
+    margin: 0;
+}
+tr:nth-child(even) {
+    background-color: red;
+}
