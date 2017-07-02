@@ -12,13 +12,27 @@ const colors = {
     accent: '#8E83A3'
 };
 
-export { TitleBar, Button, Table };
+export { TitleBar, H1, Button, Table, Subtitle };
 
 const TitleBar = glamorous.div({
     WebkitAppRegion: 'drag',
     width: '100%',
     height: 22,
     borderBottom: '1px solid #dcdcdc'
+});
+
+const H1 = glamorous.h1({
+    fontFamily: 'Lato-Light',
+    fontWeight: 300,
+    lineHeight: '20px',
+    color: '#333',
+    textAlign: 'center'
+});
+
+const Subtitle = glamorous.p({
+    fontFamily: 'Lato',
+    color: '#333',
+    textAlign: 'center'
 });
 
 const Button = glamorous.button(

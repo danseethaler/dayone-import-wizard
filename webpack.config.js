@@ -18,5 +18,6 @@ module.exports = {
             { test: /\.css$/, loader: 'style-loader!css-loader' }
         ]
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [new webpack.HotModuleReplacementPlugin()],
+    target: 'electron'
 };

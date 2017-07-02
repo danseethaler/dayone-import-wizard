@@ -4,19 +4,17 @@ console.clear();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TitleBar, Button, Table } from './components';
+import base, { TitleBar, Button, Table, H1, Subtitle } from './components';
+import { selectImportFiles } from './utilities';
 
 ReactDOM.render(
     <div>
         <TitleBar />
+        <H1>Import Your Files</H1>
+        <Subtitle>Save your memories</Subtitle>
         <div>
-            <Button
-                type="success"
-                onClick={() => {
-                    console.log('success');
-                }}
-            >
-                Get Started
+            <Button type="success" onClick={selectImportFiles}>
+                Import Files
             </Button>
         </div>
     </div>,
