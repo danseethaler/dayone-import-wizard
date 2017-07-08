@@ -4,19 +4,16 @@ console.clear();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import base, { TitleBar, Button, Table, H1, Subtitle } from './components';
-import { selectImportFiles } from './utilities';
+import App from './app';
+import { Provider } from 'react-redux';
+
+import { createStore } from 'redux';
+import reducers from './reducers';
+let store = createStore(reducers);
 
 ReactDOM.render(
-    <div>
-        <TitleBar />
-        <H1>Import Your Files</H1>
-        <Subtitle>Save your memories</Subtitle>
-        <div>
-            <Button type="success" onClick={selectImportFiles}>
-                Import Files
-            </Button>
-        </div>
-    </div>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('react_start')
 );

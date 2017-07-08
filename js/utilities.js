@@ -18,6 +18,5 @@ const selectImportFiles = () => {
         ]
     });
 
-    if (!files) return;
-    console.log('files', files);
+    return files;
 };
