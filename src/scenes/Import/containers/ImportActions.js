@@ -11,6 +11,6 @@ export default class ImportActions extends React.Component {
             }}
         >
             {this.props.setFiles ? <ImportFilesButton /> : null}
-            <AddFilesButton setFiles={this.props.setFiles} />
+            <AddFilesButton />
         </div>;
 }
