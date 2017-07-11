@@ -3,34 +3,29 @@ import React from 'react';
 import { Button } from '../../../components';
 
 import { connect } from 'react-redux';
-import { addFiles } from '../../../actions';
+import { importReadyFiles } from '../../../actions';
 import { getReadyFiles } from '../../../selectors';
-import { selectImportFiles } from '../services';
 
-const AddButton = ({ addFiles, readyFilesCount }) => {
+const AddButton = ({ importReadyFiles, count, readyFiles }) => {
     return (
         <Button
             primary
             onClick={() => {
-                var files = selectImportFiles();
-                if (files) addFiles(files);
+                console.log('readyFiles', readyFiles);
+                if (readyFiles) importReadyFiles(readyFiles);
             }}
         >
-            Import {readyFilesCount} Files
+            Import {count} Files
         </Button>
     );
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        addFiles: files => {
-            dispatch(addFiles(files));
+        importReadyFiles: files => {
+            dispatch(importReadyFiles(files));
         }
     };
 };
 
-export default connect(state => {
-    return {
-        readyFilesCount: Object.keys(getReadyFiles(state)).length
-    };
-}, mapDispatchToProps)(AddButton);
+export default connect(null, mapDispatchToProps)(AddButton);

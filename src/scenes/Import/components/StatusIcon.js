@@ -19,8 +19,13 @@ const iconMaps = {
         color: '#bbb',
         text: 'Ready to Import'
     },
-    success: {
+    importing: {
         Icon: FaRefresh,
+        color: '#050',
+        text: 'Importing'
+    },
+    success: {
+        Icon: FaCheck,
         color: '#29a88e',
         text: 'Success'
     }

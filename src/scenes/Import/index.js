@@ -4,23 +4,34 @@ import { TitleBar, H1, Subtitle } from '../../components';
 
 import ImportContainer from './containers/ImportContainer';
 import ImportActions from './containers/ImportActions';
+import { getReadyFiles } from '../../selectors';
 import { connect } from 'react-redux';
 
 class ImportScene extends React.Component {
     render = () => {
-        let setFiles = !!Object.keys(this.props.files).length;
+        const { readyFilesCount, readyFiles, filesCount } = this.props;
         return (
             <div>
                 <TitleBar />
-                <H1 style={{ marginTop: 45 }}>
+                <H1 style={{ marginTop: 45, lineHeight: '1.2em' }}>
                     Select files to import into DayOne
                 </H1>
                 <Subtitle>PDF, DOCX, DOC, PAGES, TXT, MD</Subtitle>
-                {setFiles ? <ImportContainer /> : null}
-                <ImportActions setFiles={setFiles} />
+                {filesCount ? <ImportContainer /> : null}
+                <ImportActions
+                    readyFiles={readyFiles}
+                    filesCount={filesCount}
+                    count={readyFilesCount}
+                />
             </div>
         );
     };
 }
 
-export default connect(state => state)(ImportScene);
+export default connect(state => {
+    return {
+        filesCount: Object.keys(state.files).length,
+        readyFiles: getReadyFiles(state),
+        readyFilesCount: Object.keys(getReadyFiles(state)).length
+    };
+})(ImportScene);

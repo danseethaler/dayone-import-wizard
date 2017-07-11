@@ -31,7 +31,7 @@ import path from 'path';
 const initFilesState = {};
 
 export default function files(files = initFilesState, action) {
-    console.log('action', JSON.stringify(action, null, 4));
+    // console.log('action', JSON.stringify(action, null, 4));
     const newState = Object.assign({}, files);
     const newFiles = action.files;
 
@@ -55,6 +55,15 @@ export default function files(files = initFilesState, action) {
             return newState;
 
         case 'REMOVE_FILES':
+            return newState;
+
+        case 'IMPORT_READY_FILES':
+            for (var filePath in newState) {
+                if (newState.hasOwnProperty(filePath)) {
+                    var fileOb = newState[filePath];
+                    if (fileOb.status === 'ready') fileOb.status = 'importing';
+                }
+            }
             return newState;
 
         default:
