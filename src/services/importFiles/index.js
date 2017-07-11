@@ -1,3 +1,13 @@
+import getMeta from './getMeta';
+
+import low from 'lowdb';
+const db = low('db.json');
+
+// Clear database
+// db.setState({});
+db.defaults({ importedFiles: {} }).write();
+console.log(db.get('importedFiles').value());
+
 import { updateFile } from '../../actions';
 import createCommand from './createCommand';
 import cp from 'child_process';
@@ -35,23 +45,31 @@ export default function(files, dispatch) {
 
 function createEntry(config, cb) {
     console.log('config', config);
-    var command = createCommand(config);
+    var command = createCommand(config.dayone || {});
 
     console.log('command', command);
     var process = cp.exec(command, (error, stdout, stderr) => {
-        console.log('config', config);
-
-        if (error) {
-            console.log('error', error);
-            return;
-        }
-        console.log('stdout', stdout);
+        if (error) return console.log('error', error);
 
         var entryId = stdout.split(' ').pop();
 
-        console.log('entryId:', entryId);
+        var meta = Object.assign(
+            {
+                entryId,
+                options: config.dayone,
+                title: config.title,
+                filePath: config.filePath,
+                imported: new Date().getTime()
+            },
+            getMeta(config.markdown)
+        );
 
-        console.log('Completed ' + config.filePath);
+        // Store the import for the history table
+        db
+            .get('importedFiles')
+            .set(config.filePath.replace(/[\s\.\/\\]/g, '_'), meta)
+            .write();
+
         cb(entryId);
     });
 

@@ -59,3 +59,5 @@ typings/
 
 # Ignore utility files for now
 tools/
+
+db.json

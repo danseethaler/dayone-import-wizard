@@ -24,6 +24,7 @@
     "es6-promisify": "^5.0.0",
     "glamor": "^2.20.25",
     "glamorous": "^3.23.5",
+    "lowdb": "^0.16.2",
     "moment": "^2.18.1",
     "node-pandoc": "^0.3.0",
     "react": "^15.6.1",
