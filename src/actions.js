@@ -11,7 +11,7 @@ export function addFiles(files) {
 export function importReadyFiles(files) {
     return dispatch => {
         dispatch({ type: 'IMPORT_READY_FILES' });
-        importFiles(files);
+        importFiles(files, dispatch);
     };
 }
 

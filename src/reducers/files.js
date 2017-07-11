@@ -1,31 +1,13 @@
 import path from 'path';
 
-// "/Users/danseethaler/Dropbox/Parent Computer Uploads/Info for Daniel's mission.doc": {
-//     filePath:
-//         "/Users/danseethaler/Dropbox/Parent Computer Uploads/Info for Daniel's mission.doc",
-//     active: true,
-//     title: "Info for Daniel's mission",
-//     status: 'initializing',
-//     markdown: '',
-//     date: '2017-01-04T04:00:00.000Z'
-// },
 // '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith.docx': {
 //     filePath:
 //         '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith.docx',
+//     status: 'ready',
+//     markdown:
+//         'Faith in Jesus Christ\n\n1.  Joseph Smith taught in the Articles of Faith',
 //     active: true,
-//     title: 'Faith',
-//     status: 'initializing',
-//     markdown: '',
-//     date: '2017-04-04T04:00:00.000Z'
-// },
-// '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith in Jesus Christ.docx': {
-//     filePath:
-//         '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith in Jesus Christ.docx',
-//     active: true,
-//     title: 'Faith in Jesus Christ',
-//     status: 'initializing',
-//     markdown: '',
-//     date: '2017-08-04T04:10:00.000Z'
+//     title: 'Faith'
 // }
 
 const initFilesState = {};

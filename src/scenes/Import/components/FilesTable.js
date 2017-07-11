@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 import { Table, Th } from '../../../components';
 import FileRow from './FileRow';
+import FileImportedRow from './FileImportedRow';
 
 const FilesTable = ({ files, onFileChange }) => {
     const fileRows = [];
     for (let path in files) {
         if (files.hasOwnProperty(path)) {
+            if (files[path].entryId) {
+                fileRows.push(<FileImportedRow key={path} {...files[path]} />);
+                continue;
+            }
             fileRows.push(
                 <FileRow
                     key={path}
