@@ -16,7 +16,7 @@ class ImportScene extends React.Component {
                 <H1 style={{ marginTop: 45, lineHeight: '1.2em' }}>
                     Select files to import into DayOne
                 </H1>
-                <Subtitle>PDF, DOCX, DOC, PAGES, TXT, MD</Subtitle>
+                <Subtitle>PDF, DOCX, DOC, PAGES, TXT, MD, JPG, PNG</Subtitle>
                 {filesCount ? <ImportContainer /> : null}
                 <ImportActions
                     readyFiles={readyFiles}

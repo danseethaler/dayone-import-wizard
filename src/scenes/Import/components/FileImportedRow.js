@@ -18,7 +18,7 @@ const File = ({ title, date, status, entryId }) => {
                         return false;
                     }}
                 >
-                    View Entry
+                    View in DayOne
                 </a>
             </td>
             <td>
