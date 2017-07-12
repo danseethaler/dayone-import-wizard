@@ -1,3 +1,5 @@
+// http://help.dayoneapp.com/day-one-2-0/command-line-interface-cli
+
 const options = [
     {
         key: 'j',

@@ -22,5 +22,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.IgnorePlugin(/vertx/)
     ],
-    target: 'electron'
+    target: 'electron',
+    node: {
+        __filename: true,
+        __dirname: true
+    }
 };

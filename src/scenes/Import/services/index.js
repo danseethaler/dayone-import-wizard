@@ -13,7 +13,16 @@ const selectImportFiles = () => {
             },
             {
                 name: 'Documents',
-                extensions: ['doc', 'docx', 'pdf', 'txt']
+                extensions: [
+                    'doc',
+                    'docx',
+                    'pdf',
+                    'txt',
+                    'md',
+                    'html',
+                    'htm',
+                    'pages'
+                ]
             }
         ]
     });

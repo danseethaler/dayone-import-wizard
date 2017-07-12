@@ -6,41 +6,66 @@ import fs from 'fs';
 const processors = {
     doc: toDocx,
     docx: pandocProcessor,
-    txt: pandocProcessor,
+    rtf: txt,
+    txt,
     htm: pandocProcessor,
     html: pandocProcessor,
-    pdf: pdf,
-    md: defaultProcesor
+    pdf,
+    md: defaultProcesor,
+    pages
 };
 
+function txt({ filePath, safeFilePath }, cb) {
+    return fs.readFile(filePath, 'ascii', cb);
+}
+
 function pdf({ filePath, safeFilePath }, cb) {
-    // TODO: Change the full path to relative
-    var command = `automator -i ${filePath} /Users/danseethaler/Developer/electron/dayone-import-wizard/src/resources/extract_pdf_text.app`;
-    console.log('command', command);
-    cp.exec(command, err => {
+    const appPath = `${process.env.PWD}/src/resources/extract_pdf_text.app`;
+    var command = `automator -i ${filePath} ${appPath}`;
+
+    cp.exec(command, (err, tempFilePath) => {
         if (err) throw err;
 
-        // Convert Mac encoding to UTF-8
-        var desktop =
-            process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME'];
-
-        // TODO: Use actual file basename instead of `input_text`
-        var tempFilePath = path.join(desktop, 'Desktop', 'input_test.txt');
+        // Extract the file path from the response
+        tempFilePath = tempFilePath.split('"')[1];
 
         fs.readFile(tempFilePath, (err, res) => {
-            console.log('err, res', err, res.toString());
-            cb(err, res.toString());
+            res = res.toString();
+            if (!res) return cb(new Error('Unable to extract PDF text.'));
+            cb(err, res);
 
             // Delete temporary file
             tempFilePath = tempFilePath.replace(
                 /['[\]{}()*+?.,\\^$|#\s]/g,
                 '\\$&'
             );
-            console.log('tempFilePath', tempFilePath);
             var command = 'rm -rf ' + tempFilePath;
 
             cp.exec(command, err => {
                 if (err) throw err;
+            });
+        });
+    });
+}
+
+function pages({ filePath, safeFilePath }, cb) {
+    const appPath = `${process.env.PWD}/src/resources/pages_to_docx.app`;
+    var command = `automator -i ${filePath} ${appPath}`;
+
+    cp.exec(command, (err, tempFilePath) => {
+        if (err) return cb(err);
+
+        // Extract the file path from the response
+        console.log('tempFilePath', tempFilePath);
+        tempFilePath = tempFilePath.split('"')[1];
+        console.log('tempFilePath', tempFilePath);
+
+        var args = ['--wrap=preserve', '-f', 'docx', '-t', 'markdown'];
+
+        pandoc(`${tempFilePath}`, args, (err, md) => {
+            cb(err, md);
+            cp.exec(`rm -rf ${tempFilePath}`, err => {
+                if (err) console.error(err);
             });
         });
     });
