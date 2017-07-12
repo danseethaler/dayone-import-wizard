@@ -17,12 +17,19 @@ class ImportScene extends React.Component {
                     Select files to import into DayOne
                 </H1>
                 <Subtitle>PDF, DOCX, DOC, PAGES, TXT, MD, JPG, PNG</Subtitle>
-                {filesCount ? <ImportContainer /> : null}
                 <ImportActions
                     readyFiles={readyFiles}
                     filesCount={filesCount}
                     count={readyFilesCount}
                 />
+                {filesCount ? <ImportContainer /> : null}
+                {filesCount > 12
+                    ? <ImportActions
+                          readyFiles={readyFiles}
+                          filesCount={filesCount}
+                          count={readyFilesCount}
+                      />
+                    : null}
             </div>
         );
     };

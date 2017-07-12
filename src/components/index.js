@@ -13,6 +13,16 @@ export const TitleBar = glamorous.div({
     borderBottom: '1px solid #dcdcdc'
 });
 
+export const A = glamorous.a({
+    textDecoration: 'none',
+    color: '#29a88e',
+    fontFamily: 'Lato',
+    transition: 'opacity 0.2s',
+    ':hover': {
+        opacity: 0.7
+    }
+});
+
 export const H1 = glamorous.h1({
     fontFamily: 'Lato-Light',
     fontWeight: 300,

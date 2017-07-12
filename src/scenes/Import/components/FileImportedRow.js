@@ -1,5 +1,6 @@
 import React from 'react';
 import StatusIcon from './StatusIcon';
+import { A } from '../../../components';
 
 const File = ({ title, date, status, entryId }) => {
     return (
@@ -11,7 +12,7 @@ const File = ({ title, date, status, entryId }) => {
                 {date}
             </td>
             <td>
-                <a
+                <A
                     href="#"
                     onClick={() => {
                         window.location = `dayone2://view?entryId=${entryId}`;
@@ -19,7 +20,7 @@ const File = ({ title, date, status, entryId }) => {
                     }}
                 >
                     View in DayOne
-                </a>
+                </A>
             </td>
             <td>
                 <StatusIcon status={status} />
