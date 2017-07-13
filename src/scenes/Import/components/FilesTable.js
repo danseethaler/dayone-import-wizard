@@ -5,38 +5,31 @@ import { Table, Th } from '../../../components';
 import FileRow from './FileRow';
 import FileImportedRow from './FileImportedRow';
 
-const FilesTable = ({ files, onFileChange }) => {
+const FilesTable = ({ files, onFileChange, removeFile }) => {
     const fileRows = [];
-    for (let path in files) {
-        if (files.hasOwnProperty(path)) {
-            if (files[path].entryId) {
-                fileRows.push(<FileImportedRow key={path} {...files[path]} />);
+    for (let filePath in files) {
+        if (files.hasOwnProperty(filePath)) {
+            if (files[filePath].entryId) {
+                fileRows.push(
+                    <FileImportedRow key={filePath} {...files[filePath]} />
+                );
                 continue;
             }
             fileRows.push(
                 <FileRow
-                    key={path}
-                    onFileChange={change => onFileChange({ path, change })}
-                    {...files[path]}
+                    key={filePath}
+                    onFileChange={change => onFileChange({ filePath, change })}
+                    removeFile={change => removeFile(filePath)}
+                    {...files[filePath]}
                 />
             );
         }
     }
 
     return (
-        <Table>
-            <thead>
-                <tr>
-                    <Th>Entry Title</Th>
-                    <Th>Date</Th>
-                    <Th>Tags</Th>
-                    <Th>&nbsp;</Th>
-                </tr>
-            </thead>
-            <tbody>
-                {fileRows}
-            </tbody>
-        </Table>
+        <div>
+            {fileRows}
+        </div>
     );
 };
 

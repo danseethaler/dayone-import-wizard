@@ -4,28 +4,24 @@ import { A } from '../../../components';
 
 const File = ({ title, date, status, entryId }) => {
     return (
-        <tr>
-            <td>
+        <div>
+            <span>
                 {title}
-            </td>
-            <td>
+            </span>
+            <span>
                 {date}
-            </td>
-            <td>
-                <A
-                    href="#"
-                    onClick={() => {
-                        window.location = `dayone2://view?entryId=${entryId}`;
-                        return false;
-                    }}
-                >
-                    View in DayOne
-                </A>
-            </td>
-            <td>
-                <StatusIcon status={status} />
-            </td>
-        </tr>
+            </span>
+            <A
+                href="#"
+                onClick={() => {
+                    window.location = `dayone2://view?entryId=${entryId}`;
+                    return false;
+                }}
+            >
+                View in DayOne
+            </A>
+            <StatusIcon status={status} />
+        </div>
     );
 };
 

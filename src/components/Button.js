@@ -5,16 +5,21 @@ import { bind } from 'styled-props';
 import { color } from './styles';
 
 const size = {
-    small: '2px 5px',
+    small: '3px 10px',
     medium: '10px 20px',
     big: '20px 40px'
 };
 
-const styles = bind({ color, size });
+const textSize = {
+    small: '.8em',
+    medium: '1em',
+    big: '1em'
+};
+
+const styles = bind({ color, size, textSize });
 
 const Button = glamorous.button(
     {
-        fontSize: '16px',
         margin: 10,
         border: 'none',
         cursor: 'pointer',
@@ -36,13 +41,15 @@ const Button = glamorous.button(
     },
     props => ({
         backgroundColor: styles.color(props),
-        padding: styles.size(props)
+        padding: styles.size(props),
+        fontSize: styles.textSize(props)
     })
 );
 
 Button.defaultProps = {
     size: 'medium',
-    color: 'gray'
+    color: 'gray',
+    textSize: 'medium'
 };
 
 export default Button;

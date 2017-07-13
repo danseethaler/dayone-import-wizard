@@ -36,7 +36,8 @@ export default function files(files = initFilesState, action) {
 
             return newState;
 
-        case 'REMOVE_FILES':
+        case 'REMOVE_FILE':
+            delete newState[action.filePath];
             return newState;
 
         case 'IMPORT_READY_FILES':

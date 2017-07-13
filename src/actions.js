@@ -22,3 +22,10 @@ export function updateFile({ filePath, changes }) {
         changes
     };
 }
+
+export function removeFile(filePath) {
+    return {
+        type: 'REMOVE_FILE',
+        filePath
+    };
+}
