@@ -39,9 +39,8 @@ function pdf({ filePath, safeFilePath }, cb) {
                 /['[\]{}()*+?.,\\^$|#\s]/g,
                 '\\$&'
             );
-            var command = 'rm -rf ' + tempFilePath;
 
-            cp.exec(command, err => {
+            cp.exec(`rm -rf ${tempFilePath}`, err => {
                 if (err) throw err;
             });
         });
@@ -50,20 +49,24 @@ function pdf({ filePath, safeFilePath }, cb) {
 
 function pages({ filePath, safeFilePath }, cb) {
     const appPath = `${process.env.PWD}/src/resources/pages_to_docx.app`;
-    var command = `automator -i ${filePath} ${appPath}`;
+    var command = `automator -i ${safeFilePath} ${appPath}`;
 
     cp.exec(command, (err, tempFilePath) => {
         if (err) return cb(err);
 
         // Extract the file path from the response
-        console.log('tempFilePath', tempFilePath);
         tempFilePath = tempFilePath.split('"')[1];
-        console.log('tempFilePath', tempFilePath);
 
         var args = ['--wrap=preserve', '-f', 'docx', '-t', 'markdown'];
 
         pandoc(`${tempFilePath}`, args, (err, md) => {
             cb(err, md);
+
+            // Delete temporary file
+            tempFilePath = tempFilePath.replace(
+                /['[\]{}()*+?.,\\^$|#\s]/g,
+                '\\$&'
+            );
             cp.exec(`rm -rf ${tempFilePath}`, err => {
                 if (err) console.error(err);
             });
