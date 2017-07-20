@@ -73,6 +73,10 @@ function createEntry(config, cb) {
     cb(entryId);
   });
 
-  process.stdin.write(config.markdown);
+  var markdown = config.markdown;
+  // Check if the user has opted into having the filename added to the text
+  markdown = `${config.title}\n\n${markdown}`;
+
+  process.stdin.write(markdown);
   process.stdin.end();
 }
