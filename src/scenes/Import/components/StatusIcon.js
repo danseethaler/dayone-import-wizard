@@ -1,6 +1,6 @@
 ('use strict');
 
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { FaClose, FaRefresh, FaCheck } from 'react-icons/lib/fa';
 import Rotate from '../../../components/Rotate';
 

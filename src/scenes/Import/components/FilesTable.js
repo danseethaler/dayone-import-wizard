@@ -1,36 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'; // eslint-disable-line no-unused-vars
+// import PropTypes from 'prop-types';
 
-import { Table, Th } from '../../../components';
 import FileRow from './FileRow';
 import FileImportedRow from './FileImportedRow';
 
 const FilesTable = ({ files, onFileChange, removeFile }) => {
-    const fileRows = [];
-    for (let filePath in files) {
-        if (files.hasOwnProperty(filePath)) {
-            if (files[filePath].entryId) {
-                fileRows.push(
-                    <FileImportedRow key={filePath} {...files[filePath]} />
-                );
-                continue;
-            }
-            fileRows.push(
-                <FileRow
-                    key={filePath}
-                    onFileChange={change => onFileChange({ filePath, change })}
-                    removeFile={change => removeFile(filePath)}
-                    {...files[filePath]}
-                />
-            );
-        }
+  const fileRows = [];
+  for (let filePath in files) {
+    if (files.hasOwnProperty(filePath)) {
+      if (files[filePath].entryId) {
+        fileRows.push(<FileImportedRow key={filePath} {...files[filePath]} />);
+        continue;
+      }
+      fileRows.push(
+        <FileRow
+          key={filePath}
+          onFileChange={change => onFileChange({ filePath, change })}
+          removeFile={() => removeFile(filePath)}
+          {...files[filePath]}
+        />
+      );
     }
+  }
 
-    return (
-        <div>
-            {fileRows}
-        </div>
-    );
+  return (
+    <div>
+      {fileRows}
+    </div>
+  );
 };
 
 // FilesTable.propTypes = {
