@@ -15,7 +15,7 @@ const FilesTable = ({ files, onFileChange, removeFile }) => {
       fileRows.push(
         <FileRow
           key={filePath}
-          onFileChange={change => onFileChange({ filePath, change })}
+          onFileChange={changes => onFileChange({ filePath, changes })}
           removeFile={() => removeFile(filePath)}
           {...files[filePath]}
         />

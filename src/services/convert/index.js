@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { updateFile } from '../../actions';
 import processFile from './processFile';
+import moment from 'moment';
 
 var store = {
   files: [],
@@ -41,7 +42,7 @@ export default (files, dispatch) => {
             changes: {
               markdown: md,
               status: 'ready',
-              date: stat.mtime
+              dayone: { d: moment(stat.mtime).format('YYYY-MM-DDThh:mm') }
             }
           })
         );

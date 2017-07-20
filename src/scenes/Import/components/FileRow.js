@@ -1,15 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import { TextInput, Button } from '../../../components';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 import StatusIcon from './StatusIcon';
 
 const File = ({
   filePath,
   title,
-  date,
+  dayone: { d },
   onFileChange,
   removeFile,
   status,
@@ -30,15 +27,17 @@ const File = ({
             type="text"
             value={title}
             onChange={({ target: { value } }) => {
-              onFileChange({ type: 'title', value });
+              onFileChange({ title: value });
             }}
           />
         </div>
         <div style={{ display: 'inline-block' }}>
-          <DatePicker
-            selected={moment(date)}
-            onChange={value => {
-              onFileChange({ type: 'date', value });
+          <input
+            type="datetime-local"
+            value={d}
+            onChange={({ target: { value } }) => {
+              console.log('value', value);
+              onFileChange({ dayone: { d: value } });
             }}
           />
         </div>

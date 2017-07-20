@@ -9,8 +9,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFileChange: ({ filePath, change }) => {
-      dispatch(updateFile({ filePath, change }));
+    onFileChange: ({ filePath, changes }) => {
+      dispatch(updateFile({ filePath, changes }));
     },
     removeFile: filePath => {
       dispatch(removeFile(filePath));

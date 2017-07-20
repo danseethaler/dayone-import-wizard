@@ -9,9 +9,9 @@ import path from 'path';
 //     active: true,
 //     title: 'Faith'
 // }
-const initFilesState = {};
+import { files as initialState } from './initialState';
 
-export default function files(files = initFilesState, action) {
+export default function files(files = initialState, action) {
   // console.log('action', JSON.stringify(action, null, 4));
   const newState = Object.assign({}, files);
   const newFiles = action.files;
@@ -24,7 +24,8 @@ export default function files(files = initFilesState, action) {
         status: 'initializing',
         markdown: '',
         active: true,
-        title: path.parse(newFiles[i]).name
+        title: path.parse(newFiles[i]).name,
+        dayone: { d: '2000-01-01T12:00' } // Placeholder until file is evaluated
       };
     }
 

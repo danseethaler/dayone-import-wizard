@@ -1,9 +1,8 @@
 // https://github.com/electron/electron/blob/master/docs/api/dialog.md
 const { dialog } = require('electron').remote;
-
 export { selectImportFiles };
 
-const selectImportFiles = () => {
+function selectImportFiles() {
   const files = dialog.showOpenDialog({
     properties: ['openFile', 'openDirectory', 'multiSelections'],
     filters: [
@@ -19,4 +18,4 @@ const selectImportFiles = () => {
   });
 
   return files;
-};
+}

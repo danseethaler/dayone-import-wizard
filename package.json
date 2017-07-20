@@ -31,7 +31,6 @@
     "moment": "^2.18.1",
     "node-pandoc": "^0.3.0",
     "react": "^15.6.1",
-    "react-datepicker": "^0.48.0",
     "react-dom": "^15.6.1",
     "react-icons": "^2.2.5",
     "react-redux": "^5.0.5",
