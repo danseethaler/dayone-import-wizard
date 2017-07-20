@@ -13,7 +13,6 @@ import createCommand from './createCommand';
 import cp from 'child_process';
 
 export default function(files, dispatch) {
-  console.log('typeof dispatch', typeof dispatch);
   // console.log(JSON.stringify(files, null, 4));
   var filePaths = Object.keys(files);
 
@@ -24,7 +23,6 @@ export default function(files, dispatch) {
     var fileOb = files[filePath];
 
     function cb(dispatch, entryId) {
-      console.log('filePath', filePath);
       dispatch(
         updateFile({
           filePath,
@@ -44,10 +42,9 @@ export default function(files, dispatch) {
 }
 
 function createEntry(config, cb) {
-  console.log('config', config);
   var command = createCommand(config.dayone || {});
 
-  console.log('command', command);
+  // console.log('command', command);
   var process = cp.exec(command, (error, stdout) => {
     if (error) return console.log('error', error);
 

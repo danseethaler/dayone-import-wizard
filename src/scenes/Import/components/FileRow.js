@@ -13,54 +13,57 @@ const File = ({
   markdown
 }) => {
   return (
-    <div style={{ maxWidth: 'calc(100% - 30px)' }}>
-      <div
-        style={{
-          minWidth: 600,
-          display: 'flex',
-          alignItems: 'space-between',
-          justifyContent: 'space-around'
-        }}
-      >
-        <div style={{ display: 'inline-block' }}>
-          <TextInput
-            type="text"
-            value={title}
-            onChange={({ target: { value } }) => {
-              onFileChange({ title: value });
-            }}
-          />
-        </div>
-        <div style={{ display: 'inline-block' }}>
-          <input
-            type="datetime-local"
-            value={d}
-            onChange={({ target: { value } }) => {
-              console.log('value', value);
-              onFileChange({ dayone: { d: value } });
-            }}
-          />
-        </div>
-        <div style={{ display: 'inline-block' }}>
-          <StatusIcon status={status} />
-        </div>
-        <div style={{ display: 'inline-block' }}>
-          <Button
-            small
-            gray
-            onClick={() => {
-              removeFile(filePath);
-            }}
-          >
-            Remove
-          </Button>
-        </div>
+    <div
+      style={{
+        maxWidth: 'calc(33% - 10px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+      }}
+    >
+      <div style={{ display: 'inline-block' }}>
+        <TextInput
+          type="text"
+          value={title}
+          onChange={({ target: { value } }) => {
+            onFileChange({ title: value });
+          }}
+        />
       </div>
-      <div>
-        <pre style={{ fontWeight: 300, fontFamily: 'Lato' }}>
-          {markdown}
-        </pre>
-        {true || markdown.substr(0, 100) + '...'}
+      <p style={{ fontWeight: 300, fontFamily: 'Lato' }}>
+        {markdown.substr(0, 100).replace(/\n/g, ' ') + '...'}
+      </p>
+      <div style={{ display: 'inline-block' }}>
+        <input
+          type="datetime-local"
+          style={{
+            fontFamily: 'Lato',
+            fontSize: '1em',
+            fontWeight: '300',
+            border: 'none',
+            textAlign: 'center'
+          }}
+          value={d}
+          onChange={({ target: { value } }) => {
+            console.log('value', value);
+            onFileChange({ dayone: { d: value } });
+          }}
+        />
+      </div>
+      <div style={{ display: 'inline-block' }}>
+        <StatusIcon status={status} />
+      </div>
+      <div style={{ display: 'inline-block' }}>
+        <Button
+          small
+          gray
+          onClick={() => {
+            removeFile(filePath);
+          }}
+        >
+          Remove
+        </Button>
       </div>
     </div>
   );

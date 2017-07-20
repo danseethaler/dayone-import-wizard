@@ -24,7 +24,15 @@ const FilesTable = ({ files, onFileChange, removeFile }) => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        maxWidth: 'calc(100% - 50px)',
+        margin: 'auto'
+      }}
+    >
       {fileRows}
     </div>
   );
