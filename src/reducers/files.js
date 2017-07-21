@@ -1,14 +1,4 @@
 import path from 'path';
-
-// '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith.docx': {
-//     filePath:
-//         '/Users/danseethaler/Dropbox/Parent Computer Uploads/Faith.docx',
-//     status: 'ready',
-//     markdown:
-//         'Faith in Jesus Christ\n\n1.  Joseph Smith taught in the Articles of Faith',
-//     active: true,
-//     title: 'Faith'
-// }
 import { files as initialState } from './initialState';
 
 export default function files(files = initialState, action) {

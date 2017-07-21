@@ -39,15 +39,16 @@ const iconMaps = {
 
 export default class extends React.Component {
   render() {
+    const { size } = this.props;
     const { Icon, color, rotate } = iconMaps[this.props.status] || {};
     if (!Icon) return null;
     if (rotate) {
       return (
         <Rotate>
-          <Icon size={15} color={color} />
+          <Icon size={size || 15} color={color} />
         </Rotate>
       );
     }
-    return <Icon size={15} color={color} />;
+    return <Icon size={size || 15} color={color} />;
   }
 }
