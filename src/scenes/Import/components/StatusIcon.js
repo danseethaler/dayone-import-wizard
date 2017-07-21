@@ -3,6 +3,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { FaClose, FaRefresh, FaCheck } from 'react-icons/lib/fa';
 import Rotate from '../../../components/Rotate';
+import { color } from '../../../components/styles';
 
 const iconMaps = {
   error: {
@@ -13,7 +14,7 @@ const iconMaps = {
   },
   initializing: {
     Icon: FaRefresh,
-    color: '#bbb',
+    color: color.primary,
     rotate: true,
     text: 'Initializing'
   },

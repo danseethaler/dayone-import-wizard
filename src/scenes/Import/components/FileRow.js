@@ -12,65 +12,35 @@ export default props => {
 
 const Components = {};
 
-Components.initializing = ({
-  removeFile,
-  importFile,
-  file: { filePath, title, dayone: { d }, onFileChange, status, markdown }
-}) => {
+const FileTitle = ({ title }) =>
+  <p
+    style={{
+      fontFamily: 'Lato',
+      fontWeight: 400,
+      lineHeight: '20px',
+      color: '#333',
+      textAlign: 'center'
+    }}
+  >
+    {title}
+  </p>;
+
+Components.initializing = ({ file: { title, status } }) => {
   return (
     <FileRowContainer status={status}>
-      <div style={{ display: 'inline-block' }}>
-        <TextInput
-          type="text"
-          value={title}
-          onChange={({ target: { value } }) => {
-            onFileChange({ title: value });
-          }}
-        />
-      </div>
-      <p style={{ fontWeight: 300, fontFamily: 'Lato' }}>
-        {markdown.substr(0, 100).replace(/\n/g, ' ').trim() + '...'}
-      </p>
-      <div style={{ display: 'inline-block' }}>
-        <input
-          type="datetime-local"
-          style={{
-            fontFamily: 'Lato',
-            fontSize: '1em',
-            fontWeight: '300',
-            border: 'none',
-            textAlign: 'center'
-          }}
-          value={d}
-          onChange={({ target: { value } }) => {
-            console.log('value', value);
-            onFileChange({ dayone: { d: value } });
-          }}
-        />
-      </div>
-      <div style={{ display: 'inline-block' }}>
-        <StatusIcon status={status} size={50} />
-      </div>
-      <div style={{ display: 'inline-block' }}>
-        <Button
-          small
-          gray
-          onClick={() => {
-            removeFile(filePath);
-          }}
-        >
-          Remove
-        </Button>
-        <Button
-          small
-          success
-          onClick={() => {
-            importFile(filePath);
-          }}
-        >
-          Import
-        </Button>
-      </div>
+      <FileTitle title={title} />
+      <FileTitle title="Importing..." />
+      <StatusIcon status={status} size={50} />
+    </FileRowContainer>
+  );
+};
+
+Components.error = ({ file: { title, status, errorMessage } }) => {
+  return (
+    <FileRowContainer status={status}>
+      <FileTitle title={title} />
+      <FileTitle title={errorMessage} />
+      <StatusIcon status={status} size={50} />
     </FileRowContainer>
   );
 };

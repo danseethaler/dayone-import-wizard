@@ -4,9 +4,7 @@ exports[`adding file to initial state 1`] = `
 Object {
   "/Users/danseethaler/Developer/electron/dayone-import-wizard/algorithm.txt": Object {
     "active": true,
-    "dayone": Object {
-      "d": "2000-01-01T12:00",
-    },
+    "dayone": Object {},
     "filePath": "/Users/danseethaler/Developer/electron/dayone-import-wizard/algorithm.txt",
     "markdown": "",
     "status": "initializing",
