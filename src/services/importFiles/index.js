@@ -1,12 +1,12 @@
 import getMeta from './getMeta';
-
+import path from 'path';
 import low from 'lowdb';
 const db = low('db.json');
 
 // Clear database
 // db.setState({});
 db.defaults({ importedFiles: {} }).write();
-console.log(db.get('importedFiles').value());
+// console.log(db.get('importedFiles').value());
 
 import { updateFile } from '../../actions';
 import createCommand from './createCommand';
@@ -46,7 +46,7 @@ function createEntry(config, cb) {
 
   // console.log('command', command);
   var process = cp.exec(command, (error, stdout) => {
-    if (error) return console.log('error', error);
+    if (error) return console.error(error);
 
     var entryId = stdout.split(' ').pop();
 
@@ -68,6 +68,24 @@ function createEntry(config, cb) {
       .write();
 
     cb(entryId);
+
+    // Rename the imported file with the DayOne entryId for reference
+    if (config.filePath.indexOf('DayOne_') < 0) {
+      var ext = path.extname(config.filePath);
+      var basename = path.basename(config.filePath, ext);
+      var directory = path.dirname(config.filePath);
+
+      var newFile = directory + '/' + basename + ' DayOne_' + entryId + ext;
+      newFile = newFile.replace(/['[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+      var currentFile = config.filePath.replace(
+        /['[\]{}()*+?.,\\^$|#\s]/g,
+        '\\$&'
+      );
+
+      cp.exec(`mv ${currentFile} ${newFile}`, err => {
+        if (err) console.error(err);
+      });
+    }
   });
 
   var markdown = config.markdown;
