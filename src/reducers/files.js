@@ -40,14 +40,21 @@ export default function files(files = initialState, action) {
     delete newState[action.filePath];
     return newState;
 
-  case 'IMPORT_READY_FILES':
+  case 'IMPORT_FILE': {
+    let fileOb = newState[action.filePath];
+    if (fileOb.status === 'ready') fileOb.status = 'importing';
+    return newState;
+  }
+
+  case 'IMPORT_READY_FILES': {
     for (var filePath in newState) {
       if (newState.hasOwnProperty(filePath)) {
-        var fileOb = newState[filePath];
+        let fileOb = newState[filePath];
         if (fileOb.status === 'ready') fileOb.status = 'importing';
       }
     }
     return newState;
+  }
 
   default:
     return newState;

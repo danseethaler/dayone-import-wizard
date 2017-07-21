@@ -14,7 +14,7 @@ const AddButton = ({ importReadyFiles, count, readyFiles }) => {
         if (readyFiles) importReadyFiles(readyFiles);
       }}
     >
-      Import {count} Files
+      Import All ({count})
     </Button>
   );
 };

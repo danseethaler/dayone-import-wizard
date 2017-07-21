@@ -4,7 +4,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import FileRow from './FileRow';
 import FileImportedRow from './FileImportedRow';
 
-const FilesTable = ({ files, onFileChange, removeFile }) => {
+const FilesTable = ({ files, onFileChange, removeFile, importFile }) => {
   const fileRows = [];
   for (let filePath in files) {
     if (files.hasOwnProperty(filePath)) {
@@ -17,6 +17,7 @@ const FilesTable = ({ files, onFileChange, removeFile }) => {
           key={filePath}
           onFileChange={changes => onFileChange({ filePath, changes })}
           removeFile={() => removeFile(filePath)}
+          importFile={() => importFile(files[filePath])}
           {...files[filePath]}
         />
       );

@@ -2,6 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import { TextInput, Button } from '../../../components';
 import StatusIcon from './StatusIcon';
+import FileRowContainer from './FileRowContainer';
 
 const File = ({
   filePath,
@@ -9,19 +10,12 @@ const File = ({
   dayone: { d },
   onFileChange,
   removeFile,
+  importFile,
   status,
   markdown
 }) => {
   return (
-    <div
-      style={{
-        maxWidth: 'calc(33% - 10px)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-around'
-      }}
-    >
+    <FileRowContainer status={status}>
       <div style={{ display: 'inline-block' }}>
         <TextInput
           type="text"
@@ -32,7 +26,7 @@ const File = ({
         />
       </div>
       <p style={{ fontWeight: 300, fontFamily: 'Lato' }}>
-        {markdown.substr(0, 100).replace(/\n/g, ' ') + '...'}
+        {markdown.substr(0, 100).replace(/\n/g, ' ').trim() + '...'}
       </p>
       <div style={{ display: 'inline-block' }}>
         <input
@@ -64,8 +58,17 @@ const File = ({
         >
           Remove
         </Button>
+        <Button
+          small
+          success
+          onClick={() => {
+            importFile(filePath);
+          }}
+        >
+          Import
+        </Button>
       </div>
-    </div>
+    </FileRowContainer>
   );
 };
 
