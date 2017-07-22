@@ -11,6 +11,7 @@ export default glamorous.div(
     padding: 6,
     borderRadius: 5,
     opacity: 0.7,
+    height: 230,
     '@media(max-width: 600px)': {
       width: 'calc(100% - 44px)'
     },
@@ -33,10 +34,12 @@ export default glamorous.div(
       return { border: '2px solid ' + color.primary };
     case 'ready':
       return { border: '2px solid ' + color.success };
+    case 'importing':
+      return { border: '2px solid ' + color.primary };
     case 'success':
-      return { opacity: 0.5, backgroundColor: color.success };
+      return { border: `2px solid ${color.success}` };
     case 'error':
-      return { opacity: 0.5, border: '2px solid ' + color.danger };
+      return { border: '2px solid ' + color.danger };
     default:
     }
   }

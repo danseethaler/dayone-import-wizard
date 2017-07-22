@@ -20,7 +20,7 @@ export default (files, dispatch) => {
     processFile(store.processing, (err, md) => {
       if (typeof md === 'boolean') return;
       if (err) {
-        console.error(err);
+        // console.error(err);
         dispatch(
           updateFile({
             filePath: store.processing,
@@ -35,7 +35,7 @@ export default (files, dispatch) => {
       }
 
       fs.stat(store.processing, (err, stat) => {
-        console.log('stat', stat);
+        // console.log('stat', stat);
         dispatch(
           updateFile({
             filePath: store.processing,

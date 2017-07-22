@@ -62,7 +62,7 @@ export const Th = glamorous.th({
 export const TextInput = glamorous.input({
   display: 'block',
   margin: 0,
-  width: 'calc(100% - 20px)',
+  width: 'calc(100% - 10px)',
   fontFamily: 'sans-serif',
   fontSize: 16,
   borderRadius: 2,

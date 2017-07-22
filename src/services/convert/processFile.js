@@ -84,7 +84,7 @@ function toDocx({ filePath, safeFilePath }, cb) {
 }
 
 function pandocProcessor({ filePath, ext }, cb) {
-  var args = ['-f', ext, '-t', 'markdown'];
+  var args = ['--wrap=preserve', '-f', ext, '-t', 'markdown'];
   return pandoc(filePath, args, cb);
 }
 

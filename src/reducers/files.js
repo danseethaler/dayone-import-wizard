@@ -15,7 +15,7 @@ export default function files(files = initialState, action) {
         markdown: '',
         active: true,
         title: path.parse(newFiles[i]).name,
-        dayone: {} // Placeholder until file is evaluated
+        dayone: {}
       };
     }
 

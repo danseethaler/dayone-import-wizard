@@ -3,6 +3,7 @@ import FileRowContainer from './FileRowContainer';
 import StatusIcon from './StatusIcon';
 import { TextInput, Button } from '../../../components';
 import { A } from '../../../components';
+import ReactMarkdown from 'react-markdown';
 
 export default props => {
   const { file: { filePath, status } } = props;
@@ -29,8 +30,8 @@ Components.initializing = ({ file: { title, status } }) => {
   return (
     <FileRowContainer status={status}>
       <FileTitle title={title} />
-      <FileTitle title="Importing..." />
       <StatusIcon status={status} size={50} />
+      <FileTitle title="Preparing..." />
     </FileRowContainer>
   );
 };
@@ -39,8 +40,8 @@ Components.error = ({ file: { title, status, errorMessage } }) => {
   return (
     <FileRowContainer status={status}>
       <FileTitle title={title} />
-      <FileTitle title={errorMessage} />
       <StatusIcon status={status} size={50} />
+      <FileTitle title={`Unable to read file: ${errorMessage}`} />
     </FileRowContainer>
   );
 };
@@ -48,7 +49,8 @@ Components.error = ({ file: { title, status, errorMessage } }) => {
 Components.ready = ({
   removeFile,
   importFile,
-  file: { filePath, title, dayone: { d }, onFileChange, status, markdown }
+  onFileChange,
+  file: { filePath, title, dayone: { d }, status, markdown }
 }) => {
   return (
     <FileRowContainer status={status}>
@@ -61,9 +63,22 @@ Components.ready = ({
           }}
         />
       </div>
-      <p style={{ fontWeight: 300, fontFamily: 'Lato' }}>
-        {markdown.substr(0, 100).replace(/\n/g, ' ').trim() + '...'}
-      </p>
+      <div
+        style={{
+          fontWeight: 300,
+          fontFamily: 'Lato',
+          overflow: 'scroll',
+          width: 'calc(100% - 30px)',
+          margin: 'auto',
+          lineHeight: 1.4
+          //   border: '1px solid gray',
+          //   borderRadius: 3
+        }}
+      >
+        <ReactMarkdown
+          source={markdown.substr(0, 100000).replace(/\n/g, ' ').trim() + '...'}
+        />
+      </div>
       <div style={{ display: 'inline-block' }}>
         <input
           type="datetime-local"
@@ -80,9 +95,6 @@ Components.ready = ({
             onFileChange({ dayone: { d: value } });
           }}
         />
-      </div>
-      <div style={{ display: 'inline-block' }}>
-        <StatusIcon status={status} />
       </div>
       <div style={{ display: 'inline-block' }}>
         <Button
@@ -108,27 +120,31 @@ Components.ready = ({
   );
 };
 
-Components.success = ({ file: { title, date, status, entryId } }) => {
+Components.importing = ({ file: { title, status } }) => {
   return (
-    <FileRowContainer>
-      <div>
-        <span>
-          {title}
-        </span>
-        <span>
-          {date}
-        </span>
-        <A
-          href="#"
-          onClick={() => {
-            window.location = `dayone2://view?entryId=${entryId}`;
-            return false;
-          }}
-        >
-          View in DayOne
-        </A>
-        <StatusIcon status={status} />
-      </div>
+    <FileRowContainer status={status}>
+      <FileTitle title={title} />
+      <StatusIcon status={status} size={50} />
+      <FileTitle title="Importing to DayOne..." />
+    </FileRowContainer>
+  );
+};
+
+Components.success = ({ file: { title, status, entryId } }) => {
+  return (
+    <FileRowContainer status={status}>
+      <FileTitle title={title} />
+      <StatusIcon status={status} size={50} />
+      <FileTitle title="Success!" />
+      <A
+        href="#"
+        onClick={() => {
+          window.location = `dayone2://view?entryId=${entryId}`;
+          return false;
+        }}
+      >
+        View in DayOne
+      </A>
     </FileRowContainer>
   );
 };

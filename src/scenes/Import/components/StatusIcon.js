@@ -8,7 +8,7 @@ import { color } from '../../../components/styles';
 const iconMaps = {
   error: {
     Icon: FaClose,
-    color: '#dd4444',
+    color: color.danger,
     rotate: false,
     text: 'Error'
   },
@@ -20,19 +20,19 @@ const iconMaps = {
   },
   ready: {
     Icon: FaCheck,
-    color: '#bbb',
+    color: color.accent,
     rotate: false,
     text: 'Ready to Import'
   },
   importing: {
     Icon: FaRefresh,
-    color: '#050',
+    color: color.success,
     rotate: true,
     text: 'Importing'
   },
   success: {
     Icon: FaCheck,
-    color: '#29a88e',
+    color: color.success,
     rotate: false,
     text: 'Success'
   }
