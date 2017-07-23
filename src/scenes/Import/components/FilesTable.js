@@ -18,6 +18,7 @@ const FilesTable = ({ files, onFileChange, removeFile, importFile }) => {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'center',
         maxWidth: 'calc(100% - 50px)',
         margin: 'auto'
       }}

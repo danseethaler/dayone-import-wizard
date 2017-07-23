@@ -12,20 +12,20 @@ export default glamorous.div(
     borderRadius: 5,
     opacity: 0.7,
     height: 230,
-    '@media(max-width: 600px)': {
-      width: 'calc(100% - 44px)'
+    '@media(max-width: 800px)': {
+      width: 'calc(100% - 50px)'
     },
-    '@media(max-width: 1000px) and (min-width: 600px)': {
-      width: 'calc(50% - 44px)'
-    },
-    '@media(max-width: 1200px) and (min-width: 1000px)': {
-      width: 'calc(33% - 44px)'
+    '@media(max-width: 1200px) and (min-width: 800px)': {
+      width: 'calc(50% - 50px)'
     },
     '@media(max-width: 1400px) and (min-width: 1200px)': {
-      width: 'calc(25% - 44px)'
+      width: 'calc(33% - 50px)'
     },
-    '@media(min-width: 1400px)': {
-      width: 'calc(20% - 44px)'
+    '@media(max-width: 1600px) and (min-width: 1400px)': {
+      width: 'calc(25% - 50px)'
+    },
+    '@media(min-width: 1600px)': {
+      width: 'calc(20% - 50px)'
     }
   },
   ({ status }) => {

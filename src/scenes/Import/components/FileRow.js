@@ -135,16 +135,17 @@ Components.success = ({ file: { title, status, entryId } }) => {
     <FileRowContainer status={status}>
       <FileTitle title={title} />
       <StatusIcon status={status} size={50} />
-      <FileTitle title="Success!" />
-      <A
-        href="#"
-        onClick={() => {
-          window.location = `dayone2://view?entryId=${entryId}`;
-          return false;
-        }}
-      >
-        View in DayOne
-      </A>
+      <p>
+        <A
+          href="#"
+          onClick={() => {
+            window.location = `dayone2://view?entryId=${entryId}`;
+            return false;
+          }}
+        >
+          View in DayOne
+        </A>
+      </p>
     </FileRowContainer>
   );
 };
