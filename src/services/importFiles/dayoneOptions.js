@@ -1,40 +1,63 @@
+// http://help.dayoneapp.com/day-one-2-0/command-line-interface-cli
+// -p, --photos
+// -z, --time-zone
+// -s, --starred
+// -d, --date
+// --coordinate
+// --isoDate
+// -j, --journal
+// -t, --tags
+
 import moment from 'moment';
+
 export default [
   {
-    key: 'j',
+    key: 'photos',
     create: function(item) {
-      return '-j ' + item;
+      return '--photos' + item;
     }
   },
   {
-    key: 'd',
+    key: 'timezone',
+    create: function(item) {
+      return '--time-zone' + item;
+    }
+  },
+  {
+    key: 'starred',
+    create: function(item) {
+      return '--starred' + item;
+    }
+  },
+  {
+    key: 'date',
     create: function(item) {
       if (!moment(item).isValid()) return '';
-      return `-d '${moment(item).format('YYYY-MM-DD hh:mm A')}'`;
+      return `--date '${moment(item).format('YYYY-MM-DD hh:mm A')}'`;
     }
   },
   {
-    key: 'z',
+    key: 'coordinate',
     create: function(item) {
-      return '-z ' + item;
+      return '--coordinate' + item;
     }
   },
   {
-    key: 's',
+    key: 'isoDate',
     create: function(item) {
-      return '-s ' + item;
+      return '--isoDate' + item;
     }
   },
   {
-    key: 't',
+    key: 'journal',
     create: function(item) {
-      return '-t ' + item;
+      return '--journal' + item;
     }
   },
   {
-    key: 'p',
+    key: 'tags',
     create: function(item) {
-      return '-p ' + item;
+      return '--tags' + item;
     }
   }
 ];

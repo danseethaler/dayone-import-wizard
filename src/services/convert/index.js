@@ -42,7 +42,7 @@ export default (files, dispatch) => {
             changes: {
               markdown: md,
               status: 'ready',
-              dayone: { d: moment(stat.mtime).format('YYYY-MM-DDThh:mm') }
+              dayone: { date: moment(stat.mtime).format('YYYY-MM-DDThh:mm') }
             }
           })
         );

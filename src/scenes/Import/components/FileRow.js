@@ -50,7 +50,7 @@ Components.ready = ({
   removeFile,
   importFile,
   onFileChange,
-  file: { filePath, title, dayone: { d }, status, markdown }
+  file: { filePath, title, dayone: { date }, status, markdown }
 }) => {
   return (
     <FileRowContainer status={status}>
@@ -89,10 +89,10 @@ Components.ready = ({
             border: 'none',
             textAlign: 'center'
           }}
-          value={d}
+          value={date}
           onChange={({ target: { value } }) => {
             console.log('value', value);
-            onFileChange({ dayone: { d: value } });
+            onFileChange({ dayone: { date: value } });
           }}
         />
       </div>

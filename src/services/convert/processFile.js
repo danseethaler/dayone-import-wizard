@@ -54,7 +54,7 @@ function pages({ safeFilePath }, cb) {
     // Extract the file path from the response
     tempFilePath = tempFilePath.split('"')[1];
 
-    var args = ['--wrap=preserve', '-f', 'docx', '-t', 'markdown'];
+    var args = ['--wrap=preserve', '--from', 'docx', '--to', 'markdown'];
 
     pandoc(`${tempFilePath}`, args, (err, md) => {
       cb(err, md);
@@ -72,7 +72,7 @@ function toDocx({ filePath, safeFilePath }, cb) {
   cp.exec(`textutil -convert docx ${safeFilePath}`, err => {
     if (err) console.error(err);
 
-    var args = ['--wrap=preserve', '-f', 'docx', '-t', 'markdown'];
+    var args = ['--wrap=preserve', '--from', 'docx', '--to', 'markdown'];
 
     pandoc(`${filePath}x`, args, (err, md) => {
       cb(err, md);
@@ -84,7 +84,8 @@ function toDocx({ filePath, safeFilePath }, cb) {
 }
 
 function pandocProcessor({ filePath, ext }, cb) {
-  var args = ['--wrap=preserve', '-f', ext, '-t', 'markdown'];
+  if (ext === 'htm') ext = 'html';
+  var args = ['--wrap=preserve', '--from', ext, '--to', 'markdown'];
   return pandoc(filePath, args, cb);
 }
 
